@@ -1,0 +1,202 @@
+@import 'var.styl'
+@import 'rules.styl'
+@import 'functions.styl'
+
+*
+	font-family 'Montserrat', sans-serif
+	transition(.05s)
+
+body
+	margin 0
+	padding 0
+	background-color BACKGROUND_COLOR
+
+header
+	display grid
+	color white
+	background-color ACCENT_MAIN_COLOR
+
+a
+	color ACCENT_MAIN_LIGHT_COLOR
+	text-decoration none
+
+label
+	font-weight bold
+	font-size 14px
+
+form
+	padding 10px
+
+input
+	width 100%
+	padding 6px
+	border 1px solid ACCENT_SECUNDARY_COLOR
+	border-radius(5px)
+
+input[type=checkbox]
+	display inline-block
+	width auto
+	margin 0px
+
+.load-animation
+	width 100%
+	height 100%
+	top 0
+	bottom 0
+	position fixed
+	background-color rgba(0, 0, 0, 0.54)
+	z-index 10000
+	transition 1s
+
+.loading
+	margin 300px auto
+	padding 10px
+	width 200px
+	background-color white
+	border-radius 3px
+	transition 1.2s
+
+.nav
+	margin 0
+	display inline-block
+	float right
+
+.menu-lateral
+	list-style none
+	padding 0
+	font-size 14px
+	> li 
+		&:hover
+			border-radius(0px 20px 20px 0px)
+			background-color ACCENT_SECUNDARY_COLOR
+		> a
+			padding 5px
+			display block
+			color ACCENT_MAIN_COLOR
+			> i
+				padding 5px
+
+.nav-item
+	padding 10px
+	font-size 12px
+	display inline-block
+	&:hover
+		padding 8px 10px
+		border-top 2px solid ACCENT_MAIN_LIGHT_COLOR
+	> a
+		color white
+
+.complete
+	width 100%
+	display inline-block
+
+.block
+	padding 10px
+	background-color white
+	border-radius(5px)
+
+.block-login
+	max-width 400px
+	margin 100px auto
+
+.block-top
+	margin-top -30px
+
+.align-left
+	text-align left
+
+.align-center
+	text-align center
+
+.btn
+	padding 10px
+	border none
+	border-radius(5px)
+	cursor pointer
+	text-rendering auto
+	letter-spacing normal
+	word-spacing normal
+	text-transform none
+	text-indent 0px
+	text-shadow none
+	display inline-block
+	text-align start
+	margin 0em
+	font 400 13.3333px Arial
+
+.badge
+	padding 5px
+	font-size 12px
+	border-radius(5px)
+	margin 1px
+
+.primary
+	color white
+	background-color ACCENT_MAIN_LIGHT_COLOR
+
+.default
+	color white
+	background-color ACCENT_MAIN_COLOR
+
+.warning
+	color black
+	background-color YELLOW_COLOR
+
+.danger
+	color white
+	background-color RED_COLOR
+
+.form-control
+	padding 5px
+
+.overflow
+	overflow hidden
+
+.hidden
+	display none
+
+.label-required
+	&:after
+		content ' *'
+		color RED_COLOR
+
+.help-block
+	color RED_COLOR
+	font-weight bold
+	font-size 12px
+	margin 0
+
+.form-error
+	> input
+		border 1px solid RED_COLOR
+
+.modal
+	background-color #0009
+	position fixed
+	z-index 100
+	width 100%
+	height 100%
+	top 0px
+	right 0px
+	left 0px
+	bottom 0px
+
+.modal-content
+	background-color white
+	margin 150px auto
+	width 500px
+	height auto
+	border-radius(5px)
+	> form
+		padding 0px
+
+.modal-body
+	padding 10px
+
+.modal-footer
+	padding 5px
+	border-top 1px solid #ececec
+
+@media screen and (max-width: 768px)
+	.block-top
+		margin 0
