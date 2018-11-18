@@ -32,6 +32,7 @@
 						<td>
 							<a href="{{ route('usuarios.editar', ['usuario' => $usuario->id]) }}" class="btn warning">Editar</a>
 							<a href="{{ route('usuarios.eliminar', ['usuario' => $usuario->id]) }}" class="btn danger open-modal">Eliminar</a>
+							<a href="{{ route('seguimientos.seguimiento_persona', ['persona' => $usuario->persona_id]) }}" class="btn primary">Realizar seguimiento</a>
 						</td>
 					</tr>
 				@empty

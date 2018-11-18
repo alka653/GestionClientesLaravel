@@ -17,7 +17,6 @@ Route::group(['middleware' => 'auth'], function(){
 	// Servicios
 	Route::get('/servicios', 'ServiciosController@lista')->name('servicios.lista');
 	Route::get('/servicios/nuevo', 'ServiciosController@nuevo')->name('servicios.nuevo');
-	Route::get('/servicios/nuevo', 'ServiciosController@nuevo')->name('servicios.nuevo');
 	Route::post('/servicios/nuevo', 'ServiciosController@guardarServicio')->name('servicios.guardar_servicio');
 	Route::get('/servicios/editar/{servicio}', 'ServiciosController@editar')->name('servicios.editar');
 	Route::put('/servicios/editar/{servicio}', 'ServiciosController@guardarServicio')->name('servicios.actualizar_servicio');
@@ -31,4 +30,16 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::put('/usuarios/editar/{usuario}', 'UsersController@guardarUsuario')->name('usuarios.actualizar_usuario')->middleware('permission:usuarios.actualizar_usuario');
 	Route::get('/usuarios/eliminar/{usuario}', 'UsersController@eliminar')->name('usuarios.eliminar')->middleware('permission:usuarios.eliminar');
 	Route::delete('/usuarios/eliminar/{usuario}', 'UsersController@eliminarUsuario')->name('usuarios.eliminar_usuario')->middleware('permission:usuarios.eliminar_usuario');
+	// Seguimientos
+	Route::get('/seguimientos', 'SeguimientosController@lista')->name('seguimientos.lista');
+	Route::get('/seguimientos/nuevo', 'SeguimientosController@nuevo')->name('seguimientos.nuevo');
+	Route::post('/seguimientos/nuevo', 'SeguimientosController@guardarSeguimiento')->name('seguimientos.guardar_seguimiento');
+	// Tareas
+	Route::get('/seguimientos/{seguimiento}/tarea', 'SeguimientosTareasController@seguimientoDetalle')->name('seguimientos.seguimiento_tareas');
+	Route::post('/seguimientos/{seguimiento}/tarea/nuevo', 'SeguimientosTareasController@nuevaTarea')->name('seguimientos.agregar_tarea');
+	Route::get('/seguimientos/{seguimiento}/tarea/{tarea}/cambiar-estado', 'SeguimientosTareasController@cambiarEstadoTarea')->name('seguimientos.cambiar_estado_tarea');
+	Route::get('/seguimientos/{seguimiento}/tarea/{tarea}/eliminar', 'SeguimientosTareasController@eliminarTarea')->name('seguimientos.eliminar_tarea');
+	Route::delete('/seguimientos/{seguimiento}/tarea/{tarea}/eliminar', 'SeguimientosTareasController@eliminarTareaAction')->name('seguimientos.eliminar_tarea_action');
+	// Observaciones
+	Route::get('/seguimientos/{seguimiento}/observacion', 'SeguimientosController');
 });

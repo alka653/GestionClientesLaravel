@@ -9,6 +9,9 @@ class Constants{
 		],
 		'I' => [
 			'text' => 'Inactivo'
+		],
+		'P' => [
+			'text' => 'En proceso'
 		]
 	];
 }

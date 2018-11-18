@@ -30,7 +30,8 @@ label {
 form {
   padding: 10px;
 }
-input {
+input,
+select {
   width: 100%;
   padding: 6px;
   border: 1px solid #dcdcdc;
@@ -149,7 +150,7 @@ input[type=checkbox] {
   text-shadow: none;
   display: inline-block;
   text-align: start;
-  margin: 0em;
+  margin: 2px;
   font: 400 13.3333px Arial;
 }
 .badge {
@@ -231,6 +232,10 @@ input[type=checkbox] {
 .modal-footer {
   padding: 5px;
   border-top: 1px solid #ececec;
+}
+.task {
+  padding: 5px;
+  border-bottom: 1px solid #ececec;
 }
 @media screen and (max-width: 768px) {
   .block-top {

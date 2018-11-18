@@ -15,7 +15,7 @@
 		</a>
 	</li>
 	<li>
-		<a href="#">
+		<a href="{{ route('seguimientos.lista') }}">
 			<i class="fas fa-list-ul"></i> Seguimiento
 		</a>
 	</li>

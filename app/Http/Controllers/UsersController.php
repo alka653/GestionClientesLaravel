@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Personas;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Requests\FormUserRequest;
+use App\Http\Requests\FormClienteRequest;
 
 class UsersController extends Controller{
 	const DIR_TEMPLATE = 'users';
@@ -23,24 +25,33 @@ class UsersController extends Controller{
 	public function nuevo(){
 		return view(self::DIR_TEMPLATE.'.form', [
 			'usuario' => User::with('persona'),
+			'roles' => ['' => 'Seleccione una opción'] + Role::pluck('name', 'id')->toArray(),
 			'route' => ['usuarios.nuevo'],
 			'method' => 'post'
 		]);
 	}
 	public function editar(User $usuario){
+		$role = $usuario->getRoleNames()->count() > 0 ? Role::where('name', $usuario->getRoleNames()[0])->first()->id : '';
+		$object = (object)array_merge($usuario->toArray(), $usuario->persona->toArray(), ['role' => $role]);
 		return view(self::DIR_TEMPLATE.'.form', [
-			'usuario' => $usuario,
+			'usuario' => $object,
+			'roles' => ['' => 'Seleccione una opción'] + Role::pluck('name', 'id')->toArray(),
 			'route' => ['usuarios.actualizar_usuario', $usuario->id],
 			'method' => 'put'
 		]);
 	}
-	public function guardarUsuario(FormUserRequest $request){
-		dd($request->usuario);
+	public function guardarUsuario(FormUserRequest $request_user, FormClienteRequest $request){
 		if($request->usuario){
-			$usuario = Usuarios::updateData($request);
+			dd($request_user);
+			$request->persona = $request->input('id');
+			$persona = Personas::updateData($request);
 		}else{
-			$usuario = Usuarios::saveData($request);
+			$persona = Personas::saveData($request);
+			$request_user['persona_id'] = $persona->id;
+			$request_user['nombre'] = $persona->nombre;
+			$request_user['apellido'] = $persona->apellido;
+			$usuario = User::saveData($request_user);
 		}
-		return redirect()->route('servicios.lista');
+		return redirect()->route('usuarios.lista');
 	}
 }

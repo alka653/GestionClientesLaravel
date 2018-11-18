@@ -4,24 +4,30 @@
 
 @section('sub_content')
 	{{ Form::model($usuario, ['route' => $route, 'method' => $method, 'enctype' => 'multipart/form-data']) }}
-		<div class="form-control {{ $errors->has('persona[nombre]') ? 'form-error': '' }}">
-			{{ Form::label('persona[nombre]', 'Nombre', ['class' => 'label-required']) }}
-			{{ Form::text('persona[nombre]', null, ['required']) }}
-			{!! $errors->first('persona[nombre]', '<p class="help-block">:message</p>') !!}
+		{{ Form::hidden('id', null) }}
+		<div class="form-control {{ $errors->has('nombre') ? 'form-error': '' }}">
+			{{ Form::label('nombre', 'Nombre', ['class' => 'label-required']) }}
+			{{ Form::text('nombre', null, ['required']) }}
+			{!! $errors->first('nombre', '<p class="help-block">:message</p>') !!}
 		</div>
-		<div class="form-control {{ $errors->has('persona[apellido]') ? 'form-error': '' }}">
-			{{ Form::label('persona[apellido]', 'Apellido', ['class' => 'label-required']) }}
-			{{ Form::text('persona[apellido]', null, ['required']) }}
-			{!! $errors->first('persona[apellido]', '<p class="help-block">:message</p>') !!}
+		<div class="form-control {{ $errors->has('apellido') ? 'form-error': '' }}">
+			{{ Form::label('apellido', 'Apellido', ['class' => 'label-required']) }}
+			{{ Form::text('apellido', null, ['required']) }}
+			{!! $errors->first('apellido', '<p class="help-block">:message</p>') !!}
 		</div>
-		<div class="form-control {{ $errors->has('persona[email]') ? 'form-error': '' }}">
-			{{ Form::label('persona[email]', 'Correo electrónico', ['class' => 'label-required']) }}
-			{{ Form::text('persona[email]', null, ['required']) }}
-			{!! $errors->first('persona[email]', '<p class="help-block">:message</p>') !!}
+		<div class="form-control {{ $errors->has('email') ? 'form-error': '' }}">
+			{{ Form::label('email', 'Correo electrónico', ['class' => 'label-required']) }}
+			{{ Form::text('email', null, ['required']) }}
+			{!! $errors->first('email', '<p class="help-block">:message</p>') !!}
+		</div>
+		<div class="form-control {{ $errors->has('role') ? 'form-error': '' }}">
+			{{ Form::label('role', 'Rol', ['class' => 'label-required']) }}
+			{{ Form::select('role', $roles, null, ['required']) }}
+			{!! $errors->first('role', '<p class="help-block">:message</p>') !!}
 		</div>
 		<div class="form-control">
-			{{ Form::label('persona[foto]', 'Foto') }}
-			{{ Form::file('persona[foto]', ['accept' => 'image/*']) }}
+			{{ Form::label('foto', 'Foto') }}
+			{{ Form::file('foto', ['accept' => 'image/*']) }}
 		</div>
 		<div class="form-control align-center">
 			{!! Form::button('Enviar', ['type' => 'submit', 'class' => 'btn primary']) !!}

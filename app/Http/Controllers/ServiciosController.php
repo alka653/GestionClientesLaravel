@@ -19,7 +19,7 @@ class ServiciosController extends Controller{
 	public function nuevo(){
 		return view(self::DIR_TEMPLATE.'.form', [
 			'servicio' => new Servicios(),
-			'route' => ['servicios.nuevo'],
+			'route' => ['servicios.guardar_servicio'],
 			'method' => 'post'
 		]);
 	}

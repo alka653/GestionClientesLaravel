@@ -9,7 +9,10 @@ class FormClienteRequest extends FormRequest{
 		return true;
 	}
 	public function rules(){
-		$persona = $this->persona ? $this->persona : '';
+		$persona = '';
+		if($this->persona || $this->id){
+			$persona = $this->persona ? $this->persona : $this->id;
+		}
 		return [
 			'nombre' => 'required|max:40,nombre,'.$persona,
 			'apellido' => 'required|max:40,apellido,'.$persona,
