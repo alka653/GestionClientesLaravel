@@ -36,17 +36,17 @@ class SeguimientosController extends Controller{
 		}else{
 			$seguimiento = Seguimientos::saveData($request);
 		}
-		return redirect()->route('seguimientos.seguimiento_detalle', ['seguimiento' => $seguimiento->id]);
+		return redirect()->route('seguimientos.seguimiento_tareas', ['seguimiento' => $seguimiento->id]);
 	}
 	public function seguimientoDetalle(Seguimientos $seguimiento){
-		return view(self::DIR_TEMPLATE.'.seguimiento_detalle', [
+		return view(self::DIR_TEMPLATE.'.seguimiento_tareas', [
 			'seguimiento' => $seguimiento
 		]);
 	}
 	public function nuevaTarea(FormSeguimientoTareaRequest $request, Seguimientos $seguimiento){
 		$request['seguimiento_id'] = $seguimiento->id;
 		SeguimientosTareas::saveData($request);
-		return redirect()->route('seguimientos.seguimiento_detalle', ['seguimiento' => $seguimiento->id]);
+		return redirect()->route('seguimientos.seguimiento_tareas', ['seguimiento' => $seguimiento->id]);
 	}
 	public function cambiarEstadoTarea(Seguimientos $seguimiento, $tarea){
 		$tarea = SeguimientosTareas::find($tarea);
@@ -64,6 +64,6 @@ class SeguimientosController extends Controller{
 	}
 	public function eliminarTareaAction($seguimiento, SeguimientosTareas $tarea){
 		$tarea->delete();
-		return redirect()->route('seguimientos.seguimiento_detalle', ['seguimiento' => $seguimiento]);
+		return redirect()->route('seguimientos.seguimiento_tareas', ['seguimiento' => $seguimiento]);
 	}
 }
