@@ -35,11 +35,11 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/seguimientos/nuevo', 'SeguimientosController@nuevo')->name('seguimientos.nuevo');
 	Route::post('/seguimientos/nuevo', 'SeguimientosController@guardarSeguimiento')->name('seguimientos.guardar_seguimiento');
 	// Tareas
-	Route::get('/seguimientos/{seguimiento}/tarea', 'SeguimientosTareasController@seguimientoDetalle')->name('seguimientos.seguimiento_tareas');
-	Route::post('/seguimientos/{seguimiento}/tarea/nuevo', 'SeguimientosTareasController@nuevaTarea')->name('seguimientos.agregar_tarea');
-	Route::get('/seguimientos/{seguimiento}/tarea/{tarea}/cambiar-estado', 'SeguimientosTareasController@cambiarEstadoTarea')->name('seguimientos.cambiar_estado_tarea');
-	Route::get('/seguimientos/{seguimiento}/tarea/{tarea}/eliminar', 'SeguimientosTareasController@eliminarTarea')->name('seguimientos.eliminar_tarea');
-	Route::delete('/seguimientos/{seguimiento}/tarea/{tarea}/eliminar', 'SeguimientosTareasController@eliminarTareaAction')->name('seguimientos.eliminar_tarea_action');
+	Route::get('/seguimientos/{seguimiento}/tarea', 'SeguimientosController@seguimientoDetalle')->name('seguimientos.seguimiento_tareas');
+	Route::post('/seguimientos/{seguimiento}/tarea/nuevo', 'SeguimientosController@nuevaTarea')->name('seguimientos.agregar_tarea');
+	Route::get('/seguimientos/{seguimiento}/tarea/{tarea}/cambiar-estado', 'SeguimientosController@cambiarEstadoTarea')->name('seguimientos.cambiar_estado_tarea');
+	Route::get('/seguimientos/{seguimiento}/tarea/{tarea}/eliminar', 'SeguimientosController@eliminarTarea')->name('seguimientos.eliminar_tarea');
+	Route::delete('/seguimientos/{seguimiento}/tarea/{tarea}/eliminar', 'SeguimientosController@eliminarTareaAction')->name('seguimientos.eliminar_tarea_action');
 	// Observaciones
-	Route::get('/seguimientos/{seguimiento}/observacion', 'SeguimientosController');
+	#Route::get('/seguimientos/{seguimiento}/observacion', 'SeguimientosController');
 });

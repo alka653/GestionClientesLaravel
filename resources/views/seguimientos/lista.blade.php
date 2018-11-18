@@ -29,7 +29,6 @@
 						<td>{{ $seguimiento->porcentaje() }}</td>
 						<td>
 							<a href="{{ route('seguimientos.seguimiento_tareas', ['seguimiento' => $seguimiento->id]) }}" class="btn primary">Tareas</a>
-							<a href="{{ route('seguimientos.seguimiento_observaciones') }}" class="btn warning">Observaciones</a>
 						</td>
 					</tr>
 				@empty
