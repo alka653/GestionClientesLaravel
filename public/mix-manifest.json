@@ -1,5 +1,15 @@
 {
     "/js/app.min.js": "/js/app.min.js",
+    "/css/bootstrap.css": "/css/bootstrap.css",
     "/css/app.min.css": "/css/app.min.css",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/popper.js": "/js/popper.js",
+    "/js/bootstrap.min.js": "/js/bootstrap.min.js",
+    "/js/modernizer.min.js": "/js/modernizer.min.js",
+    "/js/waves.js": "/js/waves.js",
+    "/js/jquery.slimscroll.js": "/js/jquery.slimscroll.js",
+    "/js/jquery.nicescroll.js": "/js/jquery.nicescroll.js",
+    "/js/jquery.scrollTo.min.js": "/js/jquery.scrollTo.min.js",
+    "/js/dashboard.js": "/js/dashboard.js",
     "/css/dashboard.min.css": "/css/dashboard.min.css"
 }

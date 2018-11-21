@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Personas;
+use App\Seguimientos;
+use App\SeguimientosTareas;
 use Illuminate\Http\Request;
 use App\Http\Requests\FormClienteRequest;
 
@@ -17,6 +19,9 @@ class ClientesController extends Controller{
 		})->toArray();
 		return view(self::DIR_TEMPLATE.'.lista', [
 			'query' => $query,
+			'buscar' => true,
+			'url' => route('clientes.lista'),
+			'placeholder' => 'Busca un contácto',
 			'personas' => $personas->whereNotIn('id', $users)->paginate(10)
 		]);
 	}
@@ -45,10 +50,15 @@ class ClientesController extends Controller{
 	public function eliminar(Personas $persona){
 		return view('elements.eliminar', [
 			'url' => route('clientes.eliminar_cliente', ['persona' => $persona->id]),
-			'message' => "¿Desea eliminar el cliente {$persona->nombre} {$persona->apellido}?"
+			'message' => "¿Desea eliminar el contacto {$persona->nombre} {$persona->apellido}?"
 		]);
 	}
 	public function eliminarCliente(Personas $persona){
+		$seguimiento = Seguimientos::where('persona_id', $persona->id);
+		if($seguimiento->count() > 0){
+			SeguimientosTareas::where('seguimiento_id', $seguimiento->first()->id)->delete();
+			$seguimiento->delete();
+		}
 		$persona->delete();
 		return redirect()->route('clientes.lista');
 	}

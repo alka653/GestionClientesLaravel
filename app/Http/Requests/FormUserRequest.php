@@ -10,12 +10,12 @@ class FormUserRequest extends FormRequest{
 	}
 	public function rules(){
 		return [
-			'role' => 'required'
+			//'role' => 'required'
 		];
 	}
 	public function messages(){
 		return [
-			'role.required' => 'Debe seleccionar una opción'
+			//'role.required' => 'Debe seleccionar una opción'
 		];
 	}
 }

@@ -16,7 +16,7 @@ class Seguimientos extends Model{
 		$total_finalizadas = $this->tareas->filter(function($tarea){
 			return $tarea->finalizada;
 		})->count();
-		return intval(($total_finalizadas * 100) / $this->tareas->count()).'%';
+		return intval($this->tareas->count() > 0 ? (($total_finalizadas * 100) / $this->tareas->count()) : 0);
 	}
 	public function persona(){
 		return $this->belongsTo('App\Personas', 'persona_id');

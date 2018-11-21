@@ -1,11 +1,4 @@
-{{ Form::open(['url' => $url, 'method' => 'get']) }}
-	{{ Form::token() }}
-	<div class="row align-center align-items-center">
-		<div class="col col-11">
-			{{ Form::text('query', $query, ['placeholder' => $placeholder]) }}
-		</div>
-		<div class="col col-1">
-			{!! Form::button('<i class="fas fa-search"></i>', ['type' => 'submit', 'class' => 'btn primary complete']) !!}
-		</div>
-	</div>
+{{ Form::open(['url' => $url, 'method' => 'get', 'class' => 'float-right app-search']) }}
+	{{ Form::text('query', $query, ['placeholder' => $placeholder, 'class' => 'form-control']) }}
+	{!! Form::button('<i class="fa fa-search"></i>', ['type' => 'submit']) !!}
 {{ Form::close() }}

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Personas;
+use App\Seguimientos;
+use App\SeguimientosTareas;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\FormUserRequest;
@@ -19,6 +21,9 @@ class UsersController extends Controller{
 		$usuarios = $query != null && $query != '' ? User::where('username', 'LIKE', "%$query%")->orWhereIn('persona_id', $personas) : new User();
 		return view(self::DIR_TEMPLATE.'.lista', [
 			'query' => $query,
+			'buscar' => true,
+			'url' => route('usuarios.lista'),
+			'placeholder' => 'Busca un usuario',
 			'usuarios' => $usuarios->with('persona')->paginate(10)
 		]);
 	}
@@ -40,9 +45,25 @@ class UsersController extends Controller{
 			'method' => 'put'
 		]);
 	}
+	public function eliminar(User $usuario){
+		return view('elements.eliminar', [
+			'url' => route('usuarios.eliminar_usuario', ['usuario' => $usuario->id]),
+			'message' => "¿Desea eliminar el usuario {$usuario->persona->nombre} {$usuario->persona->apellido}?"
+		]);
+	}
+	public function eliminarUsuario(User $usuario){
+		$persona_id = $usuario->persona_id;
+		$seguimiento = Seguimientos::where('user_id', $usuario->id);
+		if($seguimiento->count() > 0){
+			SeguimientosTareas::where('seguimiento_id', $seguimiento->first()->id)->delete();
+			$seguimiento->delete();
+		}
+		$usuario->delete();
+		Personas::find($persona_id)->delete();
+		return redirect()->route('usuarios.lista');
+	}
 	public function guardarUsuario(FormUserRequest $request_user, FormClienteRequest $request){
 		if($request->usuario){
-			dd($request_user);
 			$request->persona = $request->input('id');
 			$persona = Personas::updateData($request);
 		}else{

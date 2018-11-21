@@ -31,11 +31,12 @@ class User extends Authenticatable{
 		$data['apellido'] = iconv("UTF-8", "ASCII//TRANSLIT", $data['apellido']);
 		$username = str_replace("'", "", strtolower(explode(' ', $data['nombre'])[0].'.'.explode(' ', $data['apellido'])[0]));
 		$count_username = User::where('username', 'LIKE', '%'.$username.'%')->count();
+		$username = $username.($count_username > 0 ? '.'.($count_username + 1) : '');
 		return User::create([
 			'persona_id' => $data['persona_id'],
-			'username' => $username.($count_username > 0 ? '.'.($count_username + 1) : ''),
+			'username' => $username,
 			'estado' => 'A',
-			'password' => bcrypt(str_random(5)),
+			'password' => bcrypt($username),
 		]);
 	}
 	public static function updatePassword($request){
